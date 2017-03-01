@@ -3,7 +3,7 @@ class Url < ApplicationRecord
 
     class Url < ActiveRecord::Base
     # This is Sinatra! Remember to create a migration!
-        before_create :shorten, :counter
+        before_create :shorten
         validates :long_url, :presence => true, :format => URI::regexp(%w(http https))
 
         def shorten
@@ -12,7 +12,7 @@ class Url < ApplicationRecord
             @short_url = (0...6).map{ range.sample }.join
             self.short_url = @short_url
         end
-        
+
     end
 
 end
